@@ -1,8 +1,10 @@
-package com.example.myapplication22;
+package com.example.myapplication22.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.myapplication22.R;
 
 public class MainActivity extends AppCompatActivity {
 
