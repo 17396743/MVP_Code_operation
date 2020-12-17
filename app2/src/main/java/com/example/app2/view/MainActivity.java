@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity<MainContract.IMainPresenter> impl
 
     @Override
     protected void initData() {
-
+        presenter.getBannerData();
     }
 
     @Override

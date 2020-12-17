@@ -30,7 +30,7 @@ public class RetrofitUtils implements INetWorkInterface{
         apiService = build.create(ApiService.class);
     }
     public static RetrofitUtils getInstance(){
-        if (getInstance() == null){
+        if (retrofitUtils == null){
             synchronized(RetrofitUtils.class){
                 if (retrofitUtils == null){
                     retrofitUtils = new RetrofitUtils();
