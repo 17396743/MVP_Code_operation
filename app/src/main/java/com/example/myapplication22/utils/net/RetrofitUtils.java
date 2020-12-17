@@ -1,5 +1,10 @@
 package com.example.myapplication22.utils.net;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 
 import io.reactivex.Observer;
@@ -25,9 +30,8 @@ public class RetrofitUtils implements INetWorkInterface {
         OkHttpClient build = new OkHttpClient.Builder().build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl(URLConstant.BASEURL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         apiService = retrofit.create(ApiService.class);
@@ -42,9 +46,10 @@ public class RetrofitUtils implements INetWorkInterface {
         return retrofitUtils;
     }
 
-    @Override
-    public void get(String url) {
 
+
+    @Override
+    public <T> void get(String url, INetCallBack<T> callBack) {
         apiService.getBannerData(url)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -56,7 +61,23 @@ public class RetrofitUtils implements INetWorkInterface {
 
                     @Override
                     public void onNext(@NonNull ResponseBody responseBody) {
+                        try {
+                            String string = responseBody.string();
 
+                            Type[] genericInterfaces = callBack.getClass().getGenericInterfaces();
+
+                            Type[] actualTypeArguments = ((ParameterizedType) genericInterfaces[0]).getActualTypeArguments();
+
+                            Type t = actualTypeArguments[0];
+
+                            Gson gson = new Gson();
+
+                            T result = gson.fromJson(string, t);
+
+                            callBack.success(result);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -73,12 +94,12 @@ public class RetrofitUtils implements INetWorkInterface {
     }
 
     @Override
-    public void post(String url) {
-        apiService.getPost(url);
+    public <T> void post(String url, INetCallBack<T> callBack) {
+
     }
 
     @Override
-    public void post(String url, HashMap<String, String> map) {
-        apiService.getPostPar(url, map);
+    public <T> void post(String url, HashMap<String, String> map, INetCallBack<T> callBack) {
+
     }
 }

@@ -7,10 +7,10 @@ import java.util.HashMap;
  */
 public interface INetWorkInterface {
 
-    public void get(String url);
+    public <T> void get(String url, INetCallBack<T> callBack);
 
-    public void post(String url);
+    public <T> void post(String url, INetCallBack<T> callBack);
 
-    public void post(String url, HashMap<String, String> map);
+    public <T> void post(String url, HashMap<String, String> map, INetCallBack<T> callBack);
 
 }
