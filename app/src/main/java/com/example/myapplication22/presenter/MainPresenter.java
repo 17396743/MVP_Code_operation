@@ -19,7 +19,7 @@ public class MainPresenter implements MainContract.iMainPresenter {
         this.mainView = mainView;
         mainModel = new MainModel();
     }
-
+    //        URL就在P层确定,不要从Activity中传递过来
     @Override
     public void login(String login) {
         mainModel.getloginData(this, URLConstant.NEWLIST,new INetCallBack<UserBean>() {

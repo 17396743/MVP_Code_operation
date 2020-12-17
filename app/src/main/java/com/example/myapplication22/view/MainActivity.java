@@ -67,6 +67,7 @@ public class MainActivity extends BeanActivity<MainContract.iMainPresenter> impl
 
     @Override
     public void getLoginData(UserBean userBean) {
+        //网络请求返回
         List<UserBean.DataBean> data = userBean.getData();
         banner.setImages(data);
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
@@ -85,6 +86,8 @@ public class MainActivity extends BeanActivity<MainContract.iMainPresenter> impl
         }).start();
 
     }
+
+     // 登录按钮
 
 
     public void btnset(View view) {

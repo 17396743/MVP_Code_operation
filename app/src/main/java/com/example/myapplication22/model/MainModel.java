@@ -11,8 +11,9 @@ public class MainModel implements MainContract.iMainModel {
 
     @Override
     public <T> void getloginData(MainContract.iMainPresenter mainPresenter, String url, INetCallBack<T> iNetCallBack) {
+//        这一行只是测试MVP用的,现在用接口回调了,用不上了
         mainPresenter.ssende("登录成功！");
-
+//        网络请求
         RetrofitUtils.getInstance().get(url,iNetCallBack);
     }
 }
