@@ -34,7 +34,8 @@ public class MainActivity extends BaseActivity<MainContract.IMainPresenter> impl
 
     @Override
     protected void initData() {
-        presenter.getBannerData();
+        //直接获取网络请求
+//        presenter.getBannerData();
     }
 
     @Override
@@ -74,6 +75,9 @@ public class MainActivity extends BaseActivity<MainContract.IMainPresenter> impl
     }
 
     public void btnset(View view) {
+        //按钮点击获取网络请求
         presenter.getBannerData();
+        //点击按钮后，隐藏按钮
+        view.setAlpha(0);
     }
 }

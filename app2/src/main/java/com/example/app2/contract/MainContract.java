@@ -8,12 +8,15 @@ import com.example.app2.utils.net.INetCallBack;
  */
 public interface MainContract {
     interface IMainModel{
+        //用于获取网络请求
        <B> void getLoginData(IMainPresenter iMainPresenter, String url,INetCallBack<B> callBack);
     }
     interface IMainPresenter{
+        //用于传递网络请求
         void getBannerData();
     }
     interface IMainView{
+        //用于使用网络请求返回回来的数据。
         void getBannerData(BannerBean bannerBean);
         void Error(String error);
     }

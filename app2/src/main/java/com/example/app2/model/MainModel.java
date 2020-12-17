@@ -11,6 +11,7 @@ public class MainModel implements MainContract.IMainModel {
 
     @Override
     public <B> void getLoginData(MainContract.IMainPresenter iMainPresenter, String url, INetCallBack<B> callBack) {
+        //获取网络工具类
         RetrofitUtils.getInstance().get(url,callBack);
     }
 }
