@@ -19,10 +19,13 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  * @创建时间 2020/12/17 20:41
  */
 public class RetrofitUtils implements INetWorkInterface{
+    //基础代码
     private static RetrofitUtils retrofitUtils;
-    private final ApiService apiService;
 
+    private final ApiService apiService;
+    //基础代码
     private RetrofitUtils(){
+        //Retrofit网络请求
         Retrofit build = new Retrofit.Builder()
                 .baseUrl(URLConstant.BANNERURL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -30,6 +33,7 @@ public class RetrofitUtils implements INetWorkInterface{
         apiService = build.create(ApiService.class);
     }
     public static RetrofitUtils getInstance(){
+        //基础代码
         if (retrofitUtils == null){
             synchronized(RetrofitUtils.class){
                 if (retrofitUtils == null){
@@ -42,6 +46,7 @@ public class RetrofitUtils implements INetWorkInterface{
 
     @Override
     public <B> void get(String url, INetCallBack<B> callBack) {
+        //网络请求
         apiService
                 .getBannerData(url)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -54,6 +59,7 @@ public class RetrofitUtils implements INetWorkInterface{
 
                     @Override
                     public void onNext(@NonNull ResponseBody responseBody) {
+                        //类型转换
                         try {
                             String string = responseBody.string();
                             Type[] genericInterfaces = callBack.getClass().getGenericInterfaces();

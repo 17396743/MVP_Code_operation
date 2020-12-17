@@ -29,6 +29,7 @@ public class MainActivity extends BaseActivity<MainContract.IMainPresenter> impl
 
     @Override
     protected void initView() {
+        //设置控件ID
         banner = findViewById(R.id.banner);
     }
 
@@ -40,17 +41,20 @@ public class MainActivity extends BaseActivity<MainContract.IMainPresenter> impl
 
     @Override
     protected int getLayoutID() {
+        //设置布局页面
         return R.layout.activity_main;
     }
 
     @Override
     protected MainContract.IMainPresenter getLoginData() {
+        //上下文注册
         return new MainPresenter(this);
     }
 
 
     @Override
     public void getBannerData(BannerBean bannerBean) {
+        //使用数据
         List<BannerBean.DataBean> data = bannerBean.getData();
         ArrayList<String> strings = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
@@ -71,6 +75,7 @@ public class MainActivity extends BaseActivity<MainContract.IMainPresenter> impl
 
     @Override
     public void Error(String error) {
+        //获取网络报错信息
         Log.e(TAG,error);
     }
 

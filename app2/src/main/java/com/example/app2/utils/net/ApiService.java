@@ -9,6 +9,7 @@ import retrofit2.http.Url;
  * @创建时间 2020/12/17 20:40
  */
 public interface ApiService {
+    //网络请求
     @GET
     Observable<ResponseBody> getBannerData(@Url String url);
 }
